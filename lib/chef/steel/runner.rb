@@ -160,26 +160,34 @@ module Chef
             if same_file?(local_file, remote_file)
               info "\n>> '#{local_file}' has the same contents here as in the repo. Leaving it alone."
             else
-              warn "\n>> '#{local_file}' is different than its counterpart in the repo (see below)"
-              git_diff(local_file, remote_file)
-              prompt "\nDo you want to overwrite #{local_file} with the version from the repo? [y/N]: "
-
-              answer = $stdin.gets.chomp
-              case answer
-              when ''
-                error 'Moving on.' # Default behavior.
-              when /y/i
-                info "Copying #{remote_file} to #{local_file}..."
+              if config['answer_yes']
+                warn "\n>> '#{local_file}' is different than its counterpart in the repo."
+                info "Copying #{remote_file} to #{local_file}... (answer_yes is true)"
                 copy_file(remote_file, local_file)
-              when /n/i
-                error 'Moving on.'
               else
-                error 'Unknown selection. Moving on.'
+                warn "\n>> '#{local_file}' is different than its counterpart in the repo (see below)"
+                git_diff(local_file, remote_file)
+                prompt "\nDo you want to overwrite #{local_file} with the version from the repo? [y/N]: "
+
+                answer = $stdin.gets.chomp
+                case answer
+                when ''
+                  error 'Moving on.' # Default behavior.
+                when /y/i
+                  info "Copying #{remote_file} to #{local_file}..."
+                  copy_file(remote_file, local_file)
+                when /n/i
+                  error 'Moving on.'
+                else
+                  error 'Unknown selection. Moving on.'
+                end
               end
 
             end
           else
-            notice "\n>> '#{local_file}' does not exist. Copying it from the repo..."
+            info "\n>> '#{local_file}' does not exist locally."
+            info "Copying #{remote_file} to #{local_file}..."
+            copy_file(remote_file, local_file)
           end
         end
       end
