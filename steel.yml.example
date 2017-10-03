@@ -1,0 +1,20 @@
+# chef-steel
+# Define values that instruct steel what to do. These values can be overridden
+# on the command line.
+
+# Set 'repo' to the URL of a repository from which steel will clone and copy
+# top-level files.
+repo: https://bbgithub.dev.bloomberg.com/chef-cookbooks/chef-training
+
+# Set 'answer_yes' to true to perform any operation that steel would normally prompt for.
+#answer_yes: true
+
+# 'files' is a list of files that should explicitly be copied.
+#files:
+#    - .rubocop.yml
+#    - Jenkinsfile
+
+# 'exclude_files' is a list of files that should not be copied.
+#exclude_files:
+#    - .gitignore
+#    - .rspec

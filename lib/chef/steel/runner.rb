@@ -148,6 +148,9 @@ module Chef
 				Dir.glob(globule, File::FNM_DOTMATCH).each do |path|
 					next if File.directory?(path) # Should omit '.' and '..' as well.
           next if config['exclude_files'].include? File.basename(path)
+          unless config['files'].nil? || config['files'].empty?
+            next unless config['files'].include? File.basename(path)
+          end
 					file_candidates << path
 				end
       end
