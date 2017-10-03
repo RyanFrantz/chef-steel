@@ -12,6 +12,12 @@ as needed.
 **NOTE**: This tool ain't just for Chef developers! Use it for *any* repo whose
 testing-related configurations you want to keep up-to-date.
 
+## Installing `chef-steel`
+
+To begin honing your tools, install `chef-steel` via `gem`:
+
+`gem install chef-steel`
+
 ## `chef-steel` Usage
 
 ```
