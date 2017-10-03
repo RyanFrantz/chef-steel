@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+chef_steel_lib = File.expand_path(File.join(File.dirname(__FILE__), "..", "lib"))
+$:.unshift(chef_steel_lib)
+require "chef/steel/runner"
+
+Chef::Steel::Runner.new.run
