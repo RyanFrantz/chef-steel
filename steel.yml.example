@@ -4,7 +4,8 @@
 
 # Set 'repo' to the URL of a repository from which steel will clone and copy
 # top-level files.
-repo: https://bbgithub.dev.bloomberg.com/chef-cookbooks/chef-training
+repo: git@github.com:RyanFrantz/chef-test-files.git
+#repo: https://github.com/RyanFrantz/chef-test-files.git
 
 # Set 'answer_yes' to true to perform any operation that steel would normally prompt for.
 #answer_yes: true
