@@ -4,18 +4,23 @@
 
 # Set 'repo' to the URL of a repository from which steel will clone and copy
 # top-level files.
+# Command line option: -r, --repo
 repo: git@github.com:RyanFrantz/chef-testing-configs.git
 #repo: https://github.com/RyanFrantz/chef-testing-configs.git
 
 # Set 'answer_yes' to true to perform any operation that steel would normally prompt for.
+# Command line option: -y, --yes
+# Default is false.
 #answer_yes: true
 
 # 'files' is a list of files that should explicitly be copied.
+# Command line option: -f, --files
 #files:
 #    - .rubocop.yml
 #    - Jenkinsfile
 
 # 'exclude_files' is a list of files that should not be copied.
+# Command line option: -e, --exclude-files
 #exclude_files:
 #    - .gitignore
 #    - .rspec
