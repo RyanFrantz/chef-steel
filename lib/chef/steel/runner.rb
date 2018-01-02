@@ -48,7 +48,7 @@ module Chef
       # Order matters with latter configs' definitions overriding
       # previous configs' values.
       def parse_config
-        %w(/etc/steel/steel/yml steel.yml).each do |cfg|
+        %w(/etc/steel/steel.yml steel.yml).each do |cfg|
           if File.exist?(cfg)
             begin
               y = YAML.load_file(cfg)
