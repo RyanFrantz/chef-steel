@@ -29,14 +29,14 @@ module Chef
       end
 
       # A hash of values describing our config.
-    	def config
-    	  @config ||= {}
-    	end
+      def config
+        @config ||= {}
+      end
 
       # An array of path names for files that are candidates for being copied.
-    	def file_candidates
-    	  @file_candidates ||= []
-    	end
+      def file_candidates
+        @file_candidates ||= []
+      end
 
       # Create a temporary directory to clone the repo into.
       def clone_destination
@@ -72,11 +72,8 @@ module Chef
           header 'Options:'
 
           default_xfiles = %w(
-            .gitignore
-            Policyfile.rb
-            README.md
-            metadata.rb
           )
+
           option :exclude_files do
             short '-e'
             long  '--exclude-files *XFILES' # Yeah, XFILES!
@@ -93,7 +90,7 @@ module Chef
             desc  'One or more explicit file names (space-separated) to copy from the repo'
             desc  'Ex. -f .rubocop.yml'
             desc  'Ex. --files .rubocop.yml .rspec'
-            desc  'Default: All top-level files in the repo (excluding the value if --exclude-files)'
+            desc  'Default: All top-level files in the repo (excluding the value of --exclude-files)'
           end
 
           option :repo do
@@ -144,15 +141,15 @@ module Chef
       # provide a native way to minimize depth (like the `find` command).
       # File::FNM_DOTMATCH is handy flag that surfaces dotfiles.
       def find_top_files(clone_destination)
-        globule = File.join(clone_destination, '*') # Define a variable here to the next line is legible.
-				Dir.glob(globule, File::FNM_DOTMATCH).each do |path|
-					next if File.directory?(path) # Should omit '.' and '..' as well.
+        globule = File.join(clone_destination, '*') # Define a variable here so the next line is legible.
+        Dir.glob(globule, File::FNM_DOTMATCH).each do |path|
+          next if File.directory?(path) # Should omit '.' and '..' as well.
           next if config['exclude_files'].include? File.basename(path)
           unless config['files'].nil? || config['files'].empty?
             next unless config['files'].include? File.basename(path)
           end
-					file_candidates << path
-				end
+          file_candidates << path
+        end
       end
 
       # Copy files from the cloned repo into this local repo.
