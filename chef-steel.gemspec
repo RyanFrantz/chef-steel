@@ -34,6 +34,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'choice', '~> 0.2', '>= 0.2.0'
   spec.add_runtime_dependency 'colorize', '~> 0.8', '>= 0.8.1'
 
-  spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rake", ">= 12.3.3"
   spec.add_development_dependency "rspec", "~> 3.0"
 end
